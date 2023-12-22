@@ -45,10 +45,11 @@ const UserSchema = new Schema<IUser, UserModel>(
 UserSchema.statics.isUserExist = async function (
   email: string
 ): Promise<IUser | null> {
-  return await User.findOne(
+  const user = await User.findOne(
     { email },
-    { id: 1, password: 1, role: 1, email: 1 }
+    { id: 1, password: 1, role: 1, email: 1, avatar: 1, name: 1 }
   );
+  return user;
 };
 
 UserSchema.statics.isPasswordMatched = async function (

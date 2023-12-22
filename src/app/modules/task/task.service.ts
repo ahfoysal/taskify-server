@@ -100,7 +100,7 @@ const updateTask = async (
   });
   return result;
 };
-const deleteTask = async (userID: string, taskID: string) => {
+const deleteTask = async (userID: string, taskID: string) : Promise<ITask | null>=> {
   const session = await mongoose.startSession();
   session.startTransaction();
 

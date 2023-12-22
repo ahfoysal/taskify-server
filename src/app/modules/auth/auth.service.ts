@@ -30,13 +30,12 @@ const login = async (payload: any) => {
   }
 
   const { _id: userId, role, email: userEmail, avatar, name } = isUserExist;
-  console.log(isUserExist);
   const accessToken = jwtHelpers.createToken(
     { id: userId, role, email: userEmail, avatar, name },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
   );
-
+  // const { password: actualPass, ...restData } = isUserExist;
   return { accessToken, user: isUserExist };
 };
 
@@ -127,6 +126,8 @@ const providerLogin = async (token: string) => {
     );
 
     console.log(refreshToken);
+    // const { password: actualPass, ...restData } = isUserExist;
+
     return { accessToken, user: isUserExist };
   }
 };
